@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Portfolio</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* COLOR VARIABLES */
+    :root {
+      --primary:#0d0d0d;
+      --light:#ffffff;
+      --accent:#e1c16e;
+      --text:#0d0d0d;
+      --bg:rgba(255,255,255,0.85);
+    }
+
+    body.dark {
+      --primary:#ffffff;
+      --light:#0d0d0d;
+      --accent:#d4af37;
+      --text:#ffffff;
+      --bg:rgba(0,0,0,0.70);
+    }
+
+    body {
+      margin:0;
+      font-family:'Poppins',sans-serif;
+      background:var(--light);
+      color:var(--text);
+      transition:0.3s;
+    }
+
+    /* NAVBAR */
+    nav {
+      position:fixed;
+      top:0; left:0;
+      width:100%;
+      padding:18px 0;
+      background:var(--bg);
+      backdrop-filter:blur(10px);
+      z-index:1000;
+    }
+
+    .nav-center {
+      max-width:1200px;
+      margin:auto;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:40px;
+      position:relative;
+    }
+
+    /* NAV LINKS CENTERED */
+    .nav-links {
+      display:flex;
+      gap:35px;
+      list-style:none;
+      padding:0;
+      margin:0;
+    }
+
+    .nav-links a {
+      text-decoration:none;
+      font-size:18px;
+      font-weight:600;
+      color:var(--text);
+      transition:0.3s;
+    }
+
+    .nav-links a:hover {
+      color:var(--accent);
+    }
+
+    /* DARK MODE SWITCH (Right side corner) */
+    .theme-switch {
+      position:absolute;
+      right:20px;
+      width:45px;
+      height:22px;
+    }
+
+    .theme-switch input {
+      display:none;
+    }
+
+    .switch {
+      position:absolute;
+      cursor:pointer;
+      top:0; left:0; right:0; bottom:0;
+      background:var(--accent);
+      border-radius:20px;
+      transition:0.3s;
+    }
+
+    .switch::after {
+      content:"";
+      position:absolute;
+      width:18px;
+      height:18px;
+      left:2px; top:2px;
+      background:white;
+      border-radius:50%;
+      transition:0.3s;
+    }
+
+    input:checked + .switch {
+      background:#333;
+    }
+    input:checked + .switch::after {
+      transform:translateX(23px);
+    }
+
+    /* HERO SECTION */
+    .hero {
+      padding-top:120px;
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      align-items:center;
+      padding:80px 20px;
+      background:linear-gradient(135deg,var(--primary) 50%,var(--light) 50%);
+      color:white;
+    }
+
+    .hero-text {
+      max-width:450px;
+      margin-right:40px;
+    }
+
+    .hero-img {
+      width:330px;
+      height:420px;
+      object-fit:cover;
+      border-radius:20px;
+      box-shadow:0 8px 20px rgba(0,0,0,0.3);
+      margin-top:20px;
+    }
+
+    /* ABOUT */
+    .about-section {
+      padding:70px 20px;
+      max-width:1100px;
+      margin:auto;
+    }
+
+    .about-box {
+      display:flex;
+      flex-wrap:wrap;
+      gap:40px;
+      align-items:center;
+    }
+
+    .about-box img {
+      width: 250px;
+      height: 350px;
+      border-radius:20px;
+    }
+
+    /* PROJECTS */
+    .project-section {
+      padding:60px 20px;
+      max-width:1200px;
+      margin:auto;
+    }
+
+    .project-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:25px;
+    }
+
+    .project-card {
+      padding:20px;
+      background:var(--light);
+      border-radius:20px;
+      box-shadow:0 4px 15px rgba(0,0,0,0.1);
+      transition:0.3s;
+    }
+
+    .project-card:hover {
+      transform:translateY(-5px);
+    }
+
+    .project-card img {
+      width:100%;
+      height:200px;
+      object-fit:cover;
+      border-radius:15px;
+    }
+
+    /* CONTACT */
+    .contact-section {
+      padding:60px 20px;
+      text-align:center;
+    }
+
+    /* RESUME BUTTON */
+    .resume-btn {
+      padding:12px 25px;
+      background:var(--accent);
+      border-radius:30px;
+      border:none;
+      cursor:pointer;
+      font-weight:700;
+      margin-top:20px;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align:center;
+      padding:20px;
+      background:#000;
+      color:white;
+      margin-top:30px;
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:768px){
+      .nav-center {
+        justify-content:center;
+      }
+      .theme-switch {
+        right:10px;
+      }
+      .hero {
+        text-align:center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR (Centered with toggle on right) -->
+  <nav>
+    <div class="nav-center">
+
+      <ul class="nav-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <div class="theme-switch">
+        <input type="checkbox" id="darkToggle">
+        <label for="darkToggle" class="switch"></label>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-text">
+      <h1>Divya P</h1>
+      <p> Software Engineer • Web Designer </p>
+      <button class="resume-btn" onclick="window.location.href='MyResume.pdf'">Download Resume</button>
+    </div>
+    <img src="profile - Copy.jpg" class="hero-img" />
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about-section" id="about">
+    <h2>About Me</h2>
+    <div class="about-box">
+      <img src="about pic.jpg" />
+      <p>Hi, I'm Divya P. I'm currently pursuing B.Tech in Information Technology. I have a passion for web development and design, creating user-friendly and visually appealing websites. I enjoy learning new technologies and working on projects that solve real-world problems. My goal is to become a full-stack developer and contribute to innovative software solutions.</p>
+
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="project-section" id="projects">
+    <h2>My Projects</h2>
+    <div class="project-grid">
+      <div class="project-card"><img src="Trip Booking System using Html,Css and Js.png"><h3>Project 1</h3></div>
+      <div class="project-card"><img src="Personal fitness Tracker using python.png"><h3>Project 2</h3></div>
+      <div class="project-card"><img src="Airline Reservation System using java.png"><h3>Project 3</h3></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <h2>Contact</h2>
+    <p>Email: divyadily2903@gmail.com</p>
+  </section>
+
+  <footer>© 2026 Divya</footer>
+
+  <script>
+    // Dark Mode Toggle
+    const toggle = document.getElementById("darkToggle");
+    toggle.addEventListener("change", () => {
+      document.body.classList.toggle("dark");
+    });
+
+    // Smooth Scrolling
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', function(e){
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+      });
+    });
+  </script>
+
+</body>
+</html>
